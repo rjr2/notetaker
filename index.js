@@ -1,17 +1,13 @@
 const express = require("express");
-const path = require("path");
-const logger = require("./middleware/logger");
-const notes = require("./db/db");
+const path = require('path');
+const db = require("./db/db.json")
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(logger);
 
-app.use(express.json());
-app.use(express.urlencoded({ extender: false }));
+app.get("/", (req, res) => res.json(db));
 
-app.use(express.static("public"));
-
+app.use(express.static(path.join(__dirname, "public")));
 
 app.listen(PORT, () => console.log(`***Server listening at PORT ${PORT}***`));

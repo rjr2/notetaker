@@ -10,8 +10,6 @@ router.get('/', (req, res) =>
 
 router.post('/', (req, res) => {
   fsUtils.addNote(req.body).then(notes => res.json(notes)).catch(err => res.json(err))
-
-    
 });
 
 module.exports = router;
